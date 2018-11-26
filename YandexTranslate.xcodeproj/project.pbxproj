@@ -1,0 +1,475 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A267E79E21ABE46800882FD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267E79D21ABE46800882FD7 /* AppDelegate.swift */; };
+		A267E7A021ABE46800882FD7 /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267E79F21ABE46800882FD7 /* TranslateViewController.swift */; };
+		A267E7A521ABE47700882FD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A267E7A421ABE47700882FD7 /* Assets.xcassets */; };
+		A267E7A821ABE47700882FD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A267E7A621ABE47700882FD7 /* LaunchScreen.storyboard */; };
+		A267E7B821ABE55200882FD7 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267E7B721ABE55200882FD7 /* UIView.swift */; };
+		A267E7BA21ABE56300882FD7 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267E7B921ABE56300882FD7 /* UIColor.swift */; };
+		A267E7BD21ABE5B100882FD7 /* ChatTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267E7BC21ABE5B100882FD7 /* ChatTableView.swift */; };
+		A267E7BF21ABEA6900882FD7 /* ChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267E7BE21ABEA6900882FD7 /* ChatInputView.swift */; };
+		A267E7C221ABED4100882FD7 /* MessageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267E7C121ABED4100882FD7 /* MessageTextField.swift */; };
+		A267E7C421AC0FED00882FD7 /* SendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267E7C321AC0FED00882FD7 /* SendButton.swift */; };
+		A267E7C621AC18DD00882FD7 /* LanguageSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267E7C521AC18DD00882FD7 /* LanguageSwitcher.swift */; };
+		A267E7C821AC1AB500882FD7 /* TranslatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267E7C721AC1AB500882FD7 /* TranslatePresenter.swift */; };
+		A267E7CA21AC209B00882FD7 /* TranslateConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267E7C921AC209B00882FD7 /* TranslateConfigurator.swift */; };
+		A267E7CD21AC245800882FD7 /* AvailableLanguages.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267E7CC21AC245800882FD7 /* AvailableLanguages.swift */; };
+		A267E7CF21AC260F00882FD7 /* DetectedLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267E7CE21AC260F00882FD7 /* DetectedLanguage.swift */; };
+		A267E7D121AC262300882FD7 /* TranslatedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267E7D021AC262300882FD7 /* TranslatedText.swift */; };
+		A267E7D621AC2B8B00882FD7 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267E7D521AC2B8B00882FD7 /* ChatMessage.swift */; };
+		A267E7D821AC2E2E00882FD7 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267E7D721AC2E2E00882FD7 /* ChatMessageCell.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A267E79A21ABE46800882FD7 /* YandexTranslate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YandexTranslate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A267E79D21ABE46800882FD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A267E79F21ABE46800882FD7 /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
+		A267E7A421ABE47700882FD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A267E7A721ABE47700882FD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A267E7A921ABE47700882FD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A267E7B721ABE55200882FD7 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		A267E7B921ABE56300882FD7 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		A267E7BC21ABE5B100882FD7 /* ChatTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableView.swift; sourceTree = "<group>"; };
+		A267E7BE21ABEA6900882FD7 /* ChatInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputView.swift; sourceTree = "<group>"; };
+		A267E7C121ABED4100882FD7 /* MessageTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTextField.swift; sourceTree = "<group>"; };
+		A267E7C321AC0FED00882FD7 /* SendButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendButton.swift; sourceTree = "<group>"; };
+		A267E7C521AC18DD00882FD7 /* LanguageSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSwitcher.swift; sourceTree = "<group>"; };
+		A267E7C721AC1AB500882FD7 /* TranslatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatePresenter.swift; sourceTree = "<group>"; };
+		A267E7C921AC209B00882FD7 /* TranslateConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateConfigurator.swift; sourceTree = "<group>"; };
+		A267E7CC21AC245800882FD7 /* AvailableLanguages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableLanguages.swift; sourceTree = "<group>"; };
+		A267E7CE21AC260F00882FD7 /* DetectedLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectedLanguage.swift; sourceTree = "<group>"; };
+		A267E7D021AC262300882FD7 /* TranslatedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatedText.swift; sourceTree = "<group>"; };
+		A267E7D521AC2B8B00882FD7 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		A267E7D721AC2E2E00882FD7 /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A267E79721ABE46800882FD7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A267E79121ABE46700882FD7 = {
+			isa = PBXGroup;
+			children = (
+				A267E79C21ABE46800882FD7 /* YandexTranslate */,
+				A267E79B21ABE46800882FD7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A267E79B21ABE46800882FD7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A267E79A21ABE46800882FD7 /* YandexTranslate.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A267E79C21ABE46800882FD7 /* YandexTranslate */ = {
+			isa = PBXGroup;
+			children = (
+				A267E7B621ABE53E00882FD7 /* Extensions */,
+				A267E7B321ABE4B600882FD7 /* Modules */,
+				A267E7B121ABE49700882FD7 /* Services */,
+				A267E7B021ABE49100882FD7 /* Resources */,
+				A267E7AF21ABE48500882FD7 /* AppDelegate */,
+				A267E7A621ABE47700882FD7 /* LaunchScreen.storyboard */,
+			);
+			path = YandexTranslate;
+			sourceTree = "<group>";
+		};
+		A267E7AF21ABE48500882FD7 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				A267E79D21ABE46800882FD7 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		A267E7B021ABE49100882FD7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A267E7B221ABE4AC00882FD7 /* Plists */,
+				A267E7A421ABE47700882FD7 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A267E7B121ABE49700882FD7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A267E7B521ABE50F00882FD7 /* Server */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A267E7B221ABE4AC00882FD7 /* Plists */ = {
+			isa = PBXGroup;
+			children = (
+				A267E7A921ABE47700882FD7 /* Info.plist */,
+			);
+			path = Plists;
+			sourceTree = "<group>";
+		};
+		A267E7B321ABE4B600882FD7 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				A267E7B421ABE4BE00882FD7 /* Translate */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		A267E7B421ABE4BE00882FD7 /* Translate */ = {
+			isa = PBXGroup;
+			children = (
+				A267E7CB21AC228E00882FD7 /* Entities */,
+				A267E7BB21ABE5A200882FD7 /* Views */,
+				A267E79F21ABE46800882FD7 /* TranslateViewController.swift */,
+				A267E7C721AC1AB500882FD7 /* TranslatePresenter.swift */,
+				A267E7C921AC209B00882FD7 /* TranslateConfigurator.swift */,
+			);
+			path = Translate;
+			sourceTree = "<group>";
+		};
+		A267E7B521ABE50F00882FD7 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Server;
+			sourceTree = "<group>";
+		};
+		A267E7B621ABE53E00882FD7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A267E7B721ABE55200882FD7 /* UIView.swift */,
+				A267E7B921ABE56300882FD7 /* UIColor.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A267E7BB21ABE5A200882FD7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A267E7C021ABED0F00882FD7 /* ChatInputView */,
+				A267E7BC21ABE5B100882FD7 /* ChatTableView.swift */,
+				A267E7BE21ABEA6900882FD7 /* ChatInputView.swift */,
+				A267E7D721AC2E2E00882FD7 /* ChatMessageCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A267E7C021ABED0F00882FD7 /* ChatInputView */ = {
+			isa = PBXGroup;
+			children = (
+				A267E7C121ABED4100882FD7 /* MessageTextField.swift */,
+				A267E7C321AC0FED00882FD7 /* SendButton.swift */,
+				A267E7C521AC18DD00882FD7 /* LanguageSwitcher.swift */,
+			);
+			path = ChatInputView;
+			sourceTree = "<group>";
+		};
+		A267E7CB21AC228E00882FD7 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				A267E7CC21AC245800882FD7 /* AvailableLanguages.swift */,
+				A267E7CE21AC260F00882FD7 /* DetectedLanguage.swift */,
+				A267E7D021AC262300882FD7 /* TranslatedText.swift */,
+				A267E7D521AC2B8B00882FD7 /* ChatMessage.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A267E79921ABE46800882FD7 /* YandexTranslate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A267E7AC21ABE47700882FD7 /* Build configuration list for PBXNativeTarget "YandexTranslate" */;
+			buildPhases = (
+				A267E79621ABE46800882FD7 /* Sources */,
+				A267E79721ABE46800882FD7 /* Frameworks */,
+				A267E79821ABE46800882FD7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YandexTranslate;
+			productName = YandexTranslate;
+			productReference = A267E79A21ABE46800882FD7 /* YandexTranslate.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A267E79221ABE46700882FD7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = PopovD;
+				TargetAttributes = {
+					A267E79921ABE46800882FD7 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+				};
+			};
+			buildConfigurationList = A267E79521ABE46700882FD7 /* Build configuration list for PBXProject "YandexTranslate" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A267E79121ABE46700882FD7;
+			productRefGroup = A267E79B21ABE46800882FD7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A267E79921ABE46800882FD7 /* YandexTranslate */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A267E79821ABE46800882FD7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A267E7A821ABE47700882FD7 /* LaunchScreen.storyboard in Resources */,
+				A267E7A521ABE47700882FD7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A267E79621ABE46800882FD7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A267E7A021ABE46800882FD7 /* TranslateViewController.swift in Sources */,
+				A267E7C421AC0FED00882FD7 /* SendButton.swift in Sources */,
+				A267E7C621AC18DD00882FD7 /* LanguageSwitcher.swift in Sources */,
+				A267E7D621AC2B8B00882FD7 /* ChatMessage.swift in Sources */,
+				A267E7BA21ABE56300882FD7 /* UIColor.swift in Sources */,
+				A267E7D821AC2E2E00882FD7 /* ChatMessageCell.swift in Sources */,
+				A267E7CF21AC260F00882FD7 /* DetectedLanguage.swift in Sources */,
+				A267E7B821ABE55200882FD7 /* UIView.swift in Sources */,
+				A267E7CA21AC209B00882FD7 /* TranslateConfigurator.swift in Sources */,
+				A267E79E21ABE46800882FD7 /* AppDelegate.swift in Sources */,
+				A267E7D121AC262300882FD7 /* TranslatedText.swift in Sources */,
+				A267E7C221ABED4100882FD7 /* MessageTextField.swift in Sources */,
+				A267E7BD21ABE5B100882FD7 /* ChatTableView.swift in Sources */,
+				A267E7BF21ABEA6900882FD7 /* ChatInputView.swift in Sources */,
+				A267E7C821AC1AB500882FD7 /* TranslatePresenter.swift in Sources */,
+				A267E7CD21AC245800882FD7 /* AvailableLanguages.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A267E7A621ABE47700882FD7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A267E7A721ABE47700882FD7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A267E7AA21ABE47700882FD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A267E7AB21ABE47700882FD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A267E7AD21ABE47700882FD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HC3DW36LFK;
+				INFOPLIST_FILE = "$(SRCROOT)/YandexTranslate/Resources/Plists/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vego.YandexTranslate;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A267E7AE21ABE47700882FD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HC3DW36LFK;
+				INFOPLIST_FILE = "$(SRCROOT)/YandexTranslate/Resources/Plists/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vego.YandexTranslate;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A267E79521ABE46700882FD7 /* Build configuration list for PBXProject "YandexTranslate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A267E7AA21ABE47700882FD7 /* Debug */,
+				A267E7AB21ABE47700882FD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A267E7AC21ABE47700882FD7 /* Build configuration list for PBXNativeTarget "YandexTranslate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A267E7AD21ABE47700882FD7 /* Debug */,
+				A267E7AE21ABE47700882FD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A267E79221ABE46700882FD7 /* Project object */;
+}
