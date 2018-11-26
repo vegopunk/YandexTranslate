@@ -12,6 +12,8 @@
 		41B0B32121AC4CE10017F4A3 /* ServerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B0B32021AC4CE10017F4A3 /* ServerConfig.swift */; };
 		41B0B32321AC4D320017F4A3 /* TranslateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B0B32221AC4D320017F4A3 /* TranslateInteractor.swift */; };
 		41B0B32521AC6F7D0017F4A3 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B0B32421AC6F7D0017F4A3 /* LogoView.swift */; };
+		41B0B32721AC96B60017F4A3 /* TranslateProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B0B32621AC96B60017F4A3 /* TranslateProtocols.swift */; };
+		41B0B32921AC9FD20017F4A3 /* TranslateRequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B0B32821AC9FD20017F4A3 /* TranslateRequestError.swift */; };
 		A267E79E21ABE46800882FD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267E79D21ABE46800882FD7 /* AppDelegate.swift */; };
 		A267E7A021ABE46800882FD7 /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A267E79F21ABE46800882FD7 /* TranslateViewController.swift */; };
 		A267E7A521ABE47700882FD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A267E7A421ABE47700882FD7 /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 		41B0B32021AC4CE10017F4A3 /* ServerConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerConfig.swift; sourceTree = "<group>"; };
 		41B0B32221AC4D320017F4A3 /* TranslateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateInteractor.swift; sourceTree = "<group>"; };
 		41B0B32421AC6F7D0017F4A3 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
+		41B0B32621AC96B60017F4A3 /* TranslateProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateProtocols.swift; sourceTree = "<group>"; };
+		41B0B32821AC9FD20017F4A3 /* TranslateRequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateRequestError.swift; sourceTree = "<group>"; };
 		5D3EBBAE3834D97304DAE5CB /* Pods-YandexTranslate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YandexTranslate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YandexTranslate/Pods-YandexTranslate.debug.xcconfig"; sourceTree = "<group>"; };
 		5ECC150978065D66BE4A03AF /* Pods_YandexTranslate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YandexTranslate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A267E79A21ABE46800882FD7 /* YandexTranslate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YandexTranslate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,9 +116,9 @@
 		A267E79C21ABE46800882FD7 /* YandexTranslate */ = {
 			isa = PBXGroup;
 			children = (
+				A267E7A621ABE47700882FD7 /* LaunchScreen.storyboard */,
 				A267E7AF21ABE48500882FD7 /* AppDelegate */,
 				A267E7B621ABE53E00882FD7 /* Extensions */,
-				A267E7A621ABE47700882FD7 /* LaunchScreen.storyboard */,
 				A267E7B321ABE4B600882FD7 /* Modules */,
 				A267E7B021ABE49100882FD7 /* Resources */,
 				41B0B31C21AC4C450017F4A3 /* Services */,
@@ -164,6 +168,7 @@
 				A267E7C721AC1AB500882FD7 /* TranslatePresenter.swift */,
 				A267E7C921AC209B00882FD7 /* TranslateConfigurator.swift */,
 				41B0B32221AC4D320017F4A3 /* TranslateInteractor.swift */,
+				41B0B32621AC96B60017F4A3 /* TranslateProtocols.swift */,
 			);
 			path = Translate;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 				A267E7CE21AC260F00882FD7 /* DetectedLanguage.swift */,
 				A267E7D021AC262300882FD7 /* TranslatedText.swift */,
 				A267E7D521AC2B8B00882FD7 /* ChatMessage.swift */,
+				41B0B32821AC9FD20017F4A3 /* TranslateRequestError.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -351,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A267E7A021ABE46800882FD7 /* TranslateViewController.swift in Sources */,
+				41B0B32921AC9FD20017F4A3 /* TranslateRequestError.swift in Sources */,
 				A267E7C421AC0FED00882FD7 /* SendButton.swift in Sources */,
 				A267E7C621AC18DD00882FD7 /* LanguageSwitcher.swift in Sources */,
 				A267E7D621AC2B8B00882FD7 /* ChatMessage.swift in Sources */,
@@ -364,6 +371,7 @@
 				A267E7CA21AC209B00882FD7 /* TranslateConfigurator.swift in Sources */,
 				A267E79E21ABE46800882FD7 /* AppDelegate.swift in Sources */,
 				A267E7D121AC262300882FD7 /* TranslatedText.swift in Sources */,
+				41B0B32721AC96B60017F4A3 /* TranslateProtocols.swift in Sources */,
 				41B0B32321AC4D320017F4A3 /* TranslateInteractor.swift in Sources */,
 				A267E7C221ABED4100882FD7 /* MessageTextField.swift in Sources */,
 				A267E7BD21ABE5B100882FD7 /* ChatTableView.swift in Sources */,

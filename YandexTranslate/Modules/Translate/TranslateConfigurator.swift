@@ -9,10 +9,6 @@
 
 import UIKit
 
-protocol TranslateConfiguratorProtocol: class {
-    func configure(with viewController: TranslateViewController)
-}
-
 class TranslateConfigurator: TranslateConfiguratorProtocol {
     func configure(with viewController: TranslateViewController) {
         

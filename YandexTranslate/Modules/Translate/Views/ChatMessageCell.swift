@@ -26,8 +26,8 @@ class MessageCell: UITableViewCell {
             
             switch message.alignment {
             case .left:
-                leadingConstraint.isActive = true
                 trailingConstraint.isActive = false
+                leadingConstraint.isActive = true
             default:
                 leadingConstraint.isActive = false
                 trailingConstraint.isActive = true
@@ -65,12 +65,8 @@ class MessageCell: UITableViewCell {
             bubbleBackgroundView.trailingAnchor.constraint(equalTo: messageLabel.trailingAnchor, constant: 12),
             ]
         NSLayoutConstraint.activate(constraints)
-        
         leadingConstraint = messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24)
-        leadingConstraint.isActive = false
-        
         trailingConstraint = messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24)
-        trailingConstraint.isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
