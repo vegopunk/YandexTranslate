@@ -12,19 +12,24 @@ protocol TranslatePresenterProtocol: class {
     var currentLanguage: String { get }
     var translateLanguage: String { get }
     var currentLanguageLocalized: String { get }
-    var availableLanguages: [String: String]? { get set }
-    func viewBackgroundColor() -> UIColor?
+    var availableLanguages: AvailableLanguages? { get set }
+    func viewBackgroundColor(for language: String) -> UIColor?
     func sendButtonType(by text: String?) -> SendButtonType
     func swapLanguages()
-    func detectLanguage(for text: String) -> DetectedLanguage
-    func translate(_ text: String) -> TranslatedText
+    func translate(_ text: String)
     func getAvailableLanguages()
-    
+    func configureNewChatMessage(with originalText: String, originalLanguage: String, translatedText: TranslatedText) -> ChatMessage
+    func appendNewChatMessage(_ message: ChatMessage)
 }
 
 class TranslatePresenter: TranslatePresenterProtocol {
     
     weak var view: TranslateViewProtocol!
+    var interactor: TranslateInteractorProtocol!
+    
+    required init(view: TranslateViewProtocol) {
+        self.view = view
+    }
     
     private var useLanguages: [String] = ["ru", "en"]
     
@@ -33,21 +38,27 @@ class TranslatePresenter: TranslatePresenterProtocol {
     }
     
     var currentLanguageLocalized: String {
-        return self.availableLanguages?[currentLanguage] ?? ""
+        return self.availableLanguages?.langs[currentLanguage] ?? ""
     }
     
     var translateLanguage: String {
         return useLanguages[1]
     }
     
-    var availableLanguages: [String: String]?
+    var availableLanguages: AvailableLanguages? {
+        didSet {
+            self.view.updateInputView()
+        }
+    }
     
-    func viewBackgroundColor() -> UIColor? {
-        switch currentLanguage {
+    func viewBackgroundColor(for language: String) -> UIColor? {
+        switch language {
         case "en":
             return .aqua
-        default:
+        case "ru":
             return .pink
+        default:
+            return .aqua
         }
     }
     
@@ -57,21 +68,48 @@ class TranslatePresenter: TranslatePresenterProtocol {
     
     func swapLanguages() {
         self.useLanguages.swapAt(0, 1)
+        self.view.swapLanguage()
     }
     
-    func detectLanguage(for text: String) -> DetectedLanguage {
-        print("TODO: interactor")
-        return DetectedLanguage(code: 200, lang: "ru")
-    }
-    
-    func translate(_ text: String) -> TranslatedText {
-        print("TODO: translate")
-        return TranslatedText(code: 200, lang: "en", text: ["some value"])
+    func translate(_ text: String) {
+        interactor.detectLanguage(with: text) { (detectedLanguage) in
+            if detectedLanguage.lang != self.currentLanguage && self.useLanguages.contains(detectedLanguage.lang) {
+                self.swapLanguages()
+            }
+            self.interactor.translate(text: text, lang: self.translateLanguage)
+        }
     }
     
     func getAvailableLanguages() {
-        print("TODO: getAvailableLanguages")
-        self.availableLanguages = AvailableLanguages(langs: ["en" : "Английский", "ru": "Русский"]).langs
+        interactor.getLanguages()
+    }
+    
+    func configureNewChatMessage(with originalText: String, originalLanguage: String, translatedText: TranslatedText) -> ChatMessage {
+        let color = viewBackgroundColor(for: originalLanguage)
+        var alignement: NSTextAlignment {
+            switch originalLanguage {
+            case "en":
+                return .left
+            default:
+                return .right
+            }
+        }
+        var cornerAngles: CACornerMask {
+            switch alignement {
+            case .left:
+                return [.layerMaxXMinYCorner, .layerMinXMinYCorner , .layerMaxXMaxYCorner]
+            case .right:
+                return [.layerMinXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMinYCorner]
+            default:
+                return [.layerMaxXMinYCorner, .layerMinXMinYCorner , .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+            }
+        }
+        let newChatMessage = ChatMessage.init(originalText: originalText, originalLanguage: originalLanguage, translatedText: translatedText, alignment: alignement, backgroundColor: color, cornerAngles: cornerAngles)
+        return newChatMessage
+    }
+    
+    func appendNewChatMessage(_ message: ChatMessage) {
+        view.appendNewMessage(message)
     }
     
 }

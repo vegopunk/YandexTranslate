@@ -7,17 +7,31 @@
 //
 
 import UIKit
+import Speech
 
 protocol TranslateViewProtocol: class {
     func appendNewMessage(_ newMessage: ChatMessage)
+    func updateInputView()
+    func swapLanguage()
 }
 
 class TranslateViewController: UIViewController {
     
+    lazy var speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: self.presenter.currentLanguage))
+    var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    var recognitionTask: SFSpeechRecognitionTask?
+    let audioEngene = AVAudioEngine()
+    
     private let footerViewHeight: CGFloat = 76
+    private let logoViewHeight: CGFloat = 52.5
+    private let chatInputViewPaddings: UIEdgeInsets = UIEdgeInsets(top: 16, left: 4, bottom: 16, right: 4)
+    private var defaultChatContentInsets: UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: logoViewHeight, right: 0)
+    }
     
     var chat = ChatTableView()
     var chatInputView = ChatInputView()
+    var logoView = LogoView()
     
     var presenter: TranslatePresenterProtocol!
     let configurator = TranslateConfigurator()
@@ -30,6 +44,7 @@ class TranslateViewController: UIViewController {
         }
     }
     
+    //MARK: - Lidecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         configurator.configure(with: self)
@@ -49,17 +64,91 @@ class TranslateViewController: UIViewController {
     //MARK: - Fileprivate Methods
     private func setupLayout() {
         view.backgroundColor = .white
+        
+        chat.contentInset = defaultChatContentInsets
         view.addSubview(chat)
         chat.fillSafeAreaSuperview()
+        
+        view.addSubview(logoView)
+        logoView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor, bottom: nil, trailing: view.safeAreaLayoutGuide.trailingAnchor, size: CGSize(width: 0, height: logoViewHeight))
+        
+    }
+    
+    private func scrolToBottom() {
+        DispatchQueue.main.async {
+            let lastIndexPath = IndexPath(row: 0, section: 0)
+            self.chat.scrollToRow(at: lastIndexPath, at: .middle, animated: true)
+        }
+    }
+    
+    private func startRecording() {
+        if recognitionTask != nil {
+            recognitionTask?.cancel()
+            recognitionTask = nil
+        }
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(.record, mode: .default, options: .defaultToSpeaker)
+            try audioSession.setMode(AVAudioSession.Mode.measurement)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        } catch {
+            print("Не удалось настроить аудиосессию")
+        }
+        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        let inputNode = audioEngene.inputNode
+        guard let recognitionRequest = recognitionRequest else {
+            fatalError("Не удалось создать экземпляр запроса")
+        }
+        recognitionRequest.shouldReportPartialResults = true
+        recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest) {
+            result, error in
+            
+            var isFinal = false
+            
+            if result != nil {
+                self.chatInputView.textField.text = result?.bestTranscription.formattedString
+                isFinal = (result?.isFinal)!
+            }
+            
+            if error != nil || isFinal {
+                self.audioEngene.stop()
+                inputNode.removeTap(onBus: 0)
+                self.recognitionRequest = nil
+                self.recognitionTask = nil
+            }
+        }
+        let format = inputNode.outputFormat(forBus: 0)
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: format) {
+            buffer, _ in
+            self.recognitionRequest?.append(buffer)
+        }
+        audioEngene.prepare()
+        do {
+            try audioEngene.start()
+        } catch {
+            print("Не удается запустить запись.")
+        }
     }
     
 }
 
+//MARK: - TranslateViewProtocol
 extension TranslateViewController: TranslateViewProtocol {
     func appendNewMessage(_ newMessage: ChatMessage) {
-        print("appendNewMessage")
         self.chatMessages.insert(newMessage, at: 0)
     }
+    
+    func updateInputView() {
+        DispatchQueue.main.async {
+            self.chatInputView.update()
+        }
+    }
+    
+    func swapLanguage() {
+        self.chatInputView.switcher.swapLanguages()
+        self.updateInputView()
+    }
+    
 }
 
 //MARK: - UITableViewDelegate
@@ -68,7 +157,7 @@ extension TranslateViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return footerViewHeight
     }
-    
+
 }
 
 //MARK: - UITableViewDataSource
@@ -86,8 +175,9 @@ extension TranslateViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
+        headerView.backgroundColor = .white
         headerView.addSubview(chatInputView)
-        chatInputView.fillSafeAreaSuperview(padding: UIEdgeInsets(top: 16, left: 4, bottom: 16, right: 4))
+        chatInputView.fillSafeAreaSuperview(padding: chatInputViewPaddings)
         return headerView
     }
     
@@ -97,8 +187,7 @@ extension TranslateViewController: UITableViewDataSource {
 extension TranslateViewController: ChatInputViewDelegate {
     
     func chatInputView(_ chatInputView: ChatInputView, editingChanged textField: MessageTextField) {
-//        chatInputView.sendButton.type = presenter.sendButtonType(by: textField.text)
-        chatInputView.update()
+        updateInputView()
     }
     
     func chatInputView(_ chatInputView: ChatInputView, sendButtonDidSelect sendButton: SendButton) {
@@ -107,21 +196,23 @@ extension TranslateViewController: ChatInputViewDelegate {
             sendButton.type = .sendAudio
             chatInputView.textField.isEnabled = false
             chatInputView.switcher.isEnabled = false
+            startRecording()
         case .sendAudio:
             sendButton.type = .recordAudio
             chatInputView.textField.isEnabled = true
             chatInputView.switcher.isEnabled = true
+            audioEngene.stop()
+            recognitionRequest?.endAudio()
         default:
-            let newMessage = ChatMessage.init(originalLanguage: "Some original text", translatedText: "Some translated text", alignment: .right, backgroundColor: .aqua, cornerAngles: [.layerMaxXMinYCorner, .layerMinXMinYCorner , .layerMaxXMaxYCorner])
-            appendNewMessage(newMessage)
+            guard let text = chatInputView.textField.text else {return}
+            presenter.translate(text)
+            chatInputView.textField.text = nil
         }
-        chatInputView.update()
+        updateInputView()
     }
     
     func chatInputView(_ chatInputView: ChatInputView, switcherDidSelect switcher: LanguageSwitcher) {
-        switcher.swapLanguages()
         presenter.swapLanguages()
-        chatInputView.update()
     }
     
 }
@@ -148,7 +239,7 @@ extension TranslateViewController: ChatInputViewDataSource {
     }
     
     func chatInputViewColor(_ chatInputView: ChatInputView) -> UIColor? {
-        return presenter.viewBackgroundColor()
+        return presenter.viewBackgroundColor(for: presenter.currentLanguage)
     }
     
 }
@@ -165,19 +256,25 @@ extension TranslateViewController {
     
     @objc private func keyboardWillShow(_ notification: NSNotification) {
         let safeAreaBottomHeight : CGFloat = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0.0
+        let safeAreaTopHeight : CGFloat = UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0.0
         let frame = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let duration = (notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-        self.chatInputView.update()
+        updateInputView()
+        if chatMessages.count > 0 {
+            scrolToBottom()
+        }
         UIView.animate(withDuration: duration) {
+            self.logoView.transform = CGAffineTransform(translationX: 0, y: -self.logoViewHeight - safeAreaTopHeight)
             self.chat.contentInset = UIEdgeInsets(top: frame.height - safeAreaBottomHeight, left: 0, bottom: 0, right: 0)
         }
     }
     
     @objc private func keyboardWillHide(_ notification: NSNotification) {
         let duration = (notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
-        self.chatInputView.update()
+        updateInputView()
         UIView.animate(withDuration: duration) {
-            self.chat.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            self.logoView.transform = .identity
+            self.chat.contentInset = self.defaultChatContentInsets
         }
     }
     

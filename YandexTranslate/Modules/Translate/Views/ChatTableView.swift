@@ -14,7 +14,7 @@ class ChatTableView: UITableView {
         super.init(frame: frame, style: style)
         rotate()
         separatorColor = .clear
-        keyboardDismissMode = .onDrag
+        keyboardDismissMode = .interactive
         register(MessageCell.self, forCellReuseIdentifier: MessageCell.reuseId)
     }
     

@@ -14,3 +14,4 @@ struct TranslatedText: Codable {
     let text: [String]
 }
 
+

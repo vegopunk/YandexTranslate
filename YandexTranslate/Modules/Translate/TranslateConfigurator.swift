@@ -16,8 +16,9 @@ protocol TranslateConfiguratorProtocol: class {
 class TranslateConfigurator: TranslateConfiguratorProtocol {
     func configure(with viewController: TranslateViewController) {
         
-        let presenter = TranslatePresenter()
-        presenter.view = viewController
+        let presenter = TranslatePresenter(view: viewController)
+        let interactor: TranslateInteractorProtocol = TranslateInteractor(presenter: presenter)
+        presenter.interactor = interactor
         presenter.getAvailableLanguages()
         
         viewController.presenter = presenter

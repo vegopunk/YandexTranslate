@@ -9,9 +9,10 @@
 import UIKit
 
 struct ChatMessage {
+    let originalText: String
     let originalLanguage: String
-    let translatedText: String
+    let translatedText: TranslatedText
     let alignment: NSTextAlignment
-    let backgroundColor: UIColor
+    let backgroundColor: UIColor?
     let cornerAngles: CACornerMask
 }

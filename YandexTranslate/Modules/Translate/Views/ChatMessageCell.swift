@@ -18,8 +18,8 @@ class MessageCell: UITableViewCell {
     
     var message: ChatMessage! {
         didSet {
-            let mutableAttributedText = NSMutableAttributedString(string: message.originalLanguage, attributes: [.font: UIFont.systemFont(ofSize: 15, weight: .medium), .foregroundColor: UIColor(white: 1, alpha: 0.8)])
-            mutableAttributedText.append(NSAttributedString(string: "\n" + message.translatedText, attributes: [.font: UIFont.systemFont(ofSize: 20, weight: .medium), .foregroundColor: UIColor.white]))
+            let mutableAttributedText = NSMutableAttributedString(string: message.originalText, attributes: [.font: UIFont.systemFont(ofSize: 15, weight: .medium), .foregroundColor: UIColor(white: 1, alpha: 0.8)])
+            mutableAttributedText.append(NSAttributedString(string: "\n" + message.translatedText.text.joined(), attributes: [.font: UIFont.systemFont(ofSize: 20, weight: .medium), .foregroundColor: UIColor.white]))
             
             messageLabel.attributedText = mutableAttributedText
             messageLabel.textAlignment = message.alignment
@@ -41,9 +41,9 @@ class MessageCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        rotate()
-        separatorInset = .init(top: 0, left: 500, bottom: 0, right: 0)
+        selectionStyle = .none
         backgroundColor = .clear
+        rotate()
         bubbleBackgroundView.layer.cornerRadius = 16
         
         bubbleBackgroundView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +54,6 @@ class MessageCell: UITableViewCell {
         addSubview(bubbleBackgroundView)
         addSubview(messageLabel)
         
-        // lets set up some constraints for our label
         let constraints = [
             messageLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -26),
